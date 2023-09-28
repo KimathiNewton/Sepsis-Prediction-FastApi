@@ -1,0 +1,5 @@
+black
+fastapi[all]
+uvicorn
+pandas 
+scikit-learn
