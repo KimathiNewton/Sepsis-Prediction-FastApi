@@ -1,89 +1,105 @@
 
 from typing import Union
-
 from fastapi import FastAPI
-
+import pickle
 from pydantic import BaseModel
 import pandas as pd
+import os
+from sklearn.metrics import euclidean_distances
+#Model Evaluation
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
+from sklearn.metrics import *
 
 
+# Assuming these imports for scaler and label_encoder
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import LabelEncoder
+# Setup
+
+# A function to load machine Learning components to re-use
+def Ml_loading_components(fp):
+    with open(fp, "rb") as f:
+        object=pickle.load(f)
+        return(object)
+
+# Loading the machine learning components
+DIRPATH = os.path.dirname(os.path.realpath(__file__))
+ml_core_fp = os.path.join(DIRPATH,"ML","ML_Model.pkl")
+ml_components_dict = Ml_loading_components(fp=ml_core_fp)
+
+
+# Defining the variables for each component
+label_encoder = ml_components_dict['label_encoder']
+scaler = ml_components_dict['scaler']
+model = ml_components_dict['model']
 
 
 app = FastAPI()
 
-
-
-
-class Item(BaseModel):
-
-    name: str
-
-    price: float
-
-    is_offer: Union[bool, None] = None
-
-
-
-
-@app.get("")
-
-def read_root():
-
-    return {"Hello": "World"}
-
-
-
-
-@app.get("/items/{item_id}")
-
-def read_item(item_id: int, q: Union[str, None] = None):
-
-    return {"item_id": item_id, "q": q}
-
-
-
-
-@app.put("/items/{item_id}")
-
-def update_item(item_id: int, item: Item):
-
-    return {"item_name": item.name, "item_id": item_id}
-
-# Predict endpoint
 @app.get("/inference")
-def predict (age,gender,height,):
+def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,Age:float):
     """
-    Age of the Patient
-    Gender of the Patient
-    Height of the patient
+* ID: number to represent patient ID
+
+* PRG: Plasma glucose
+
+* PL: Blood Work Result-1 (mu U/ml)
+
+* PR: Blood Pressure (mmHg)
+
+* SK: Blood Work Result-2(mm)
+
+* TS: Blood Work Result-3 (muU/ml)
+
+* M11: Body mass index (weight in kg/(height in m)^2
+
+* BD2: Blood Work Result-4 (mu U/ml)
+
+* Age: patients age(years)
+
+* Insurance: If a patient holds a valid insurance card
+
+* Sepsis: Positive: if a patient in ICU will develop a sepsis , and Negative: otherwis otherwise
     """
-# Prepare the feature and structure them like in the notebook
-data = pd.DataFrame({
-    "age":[age],
-    "gender":[gender],
-    "height":[height],
-})
+    
+    # Prepare the feature and structure them like in the notebook
+    df = pd.DataFrame({
+        "PRG":[PRG],
+        "PL":[PL],
+        "BP":[BP],
+        "SK":[SK],
+        "TS":[TS],
+        "BMI":[BMI],
+        "BD2":[BD2],
+        "Age":[Age]
+    })
 
-print(f"[Info] The initial and raw df : {data.to_markdown()}")
+    print(f"[Info] The initial and raw df : {df.to_markdown()}")
 
-# Feature Preprocessing and Creation
-df_scaled = scaler.transform(data)
-df_encoded = encoder.transform(data['categorical features'])
+    # Feature Preprocessing and Creation
+    df_scaled = scaler.transform(df)
+    #df_encoded = label_encoder.transform(df['categorical features'])
 
-#Merging the datasets
-df_cleaned = pd.concat([df_scaled,df_encoded],axis=1)
+    #Merging the datasets
+    #df_cleaned = pd.concat([df_scaled,df_encoded],axis=1)
 
-# Prediction
-raw_prediction = model.predict(df_cleaned)
+    # Prediction
+    raw_prediction = model.predict(df_scaled)
 
-# Format the prediction to send to the API's reply
-output = {
-    "features" : {
-        "age" : age,
-        "gender": gender,
-        "height": height,
-    },
-      "df" : df, #Pandas is now automatically converted, 
-    "array" : df.toarray().tolist()
+    # Format the prediction to send to the API's reply
+    output = {
+        "features" : {
+        "PRG":[PRG],
+        "PL":[PL],
+        "BP":[BP],
+        "SK":[SK],
+        "TS":[TS],
+        "BMI":[BMI],
+        "BD2":[BD2],
+        "Age":[Age]
+        },
+        "df" : df #Pandas is now automatically converted, 
+        #"array" : df.toarray().tolist()
 
-}
+    } 
+    
