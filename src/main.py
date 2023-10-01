@@ -85,21 +85,15 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
 
     # Prediction
     raw_prediction = model.predict(df_scaled)
+    if raw_prediction == 0:
+        return{f"Negative To Sepsis"}
+    elif raw_prediction == 1:
+        return {f"Positive to Sepsis"}
+    else:
+        return {"Error"}
 
-    # Format the prediction to send to the API's reply
-    output = {
-        "features" : {
-        "PRG":[PRG],
-        "PL":[PL],
-        "BP":[BP],
-        "SK":[SK],
-        "TS":[TS],
-        "BMI":[BMI],
-        "BD2":[BD2],
-        "Age":[Age]
-        },
-        "df" : df #Pandas is now automatically converted, 
-        #"array" : df.toarray().tolist()
-
-    } 
     
+# Status Endpoint to check if the API is online
+@app.get("/status")
+def status():
+    return {"Message" : "online"}
