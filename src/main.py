@@ -1,18 +1,19 @@
 
+# Importations
+
 from typing import Union
 from fastapi import FastAPI
 import pickle
 from pydantic import BaseModel
 import pandas as pd
 import os
-
-
 # Assuming these imports for scaler and label_encoder
 from sklearn.preprocessing import StandardScaler
 from sklearn.preprocessing import LabelEncoder
-# Setup
 
-# A function to load machine Learning components to re-use
+# Setup Section
+ 
+## A function to load machine Learning components to re-use
 def Ml_loading_components(fp):
     with open(fp, "rb") as f:
         object=pickle.load(f)
@@ -31,12 +32,8 @@ scaler = ml_components_dict['scaler']
 model = ml_components_dict['model']
 
 
-
 # Create FastAPI instance
 app = FastAPI(title="Sepsis Prediction API",description="API for Predicting Sespsis ")
-
-# 
-from fastapi.middleware.cors import CORSMiddleware
 
 
 # Create prediction endpoint
@@ -60,7 +57,7 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
 
 * Age: patients age(years)
 
-* Sepsis: Positive: if a patient in ICU will develop a sepsis , and Negative: otherwis otherwise
+
 """   
     # Prepare the feature and structure them like in the notebook
     df = pd.DataFrame({
@@ -79,10 +76,7 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
 
     # Feature Preprocessing and Creation
     df_scaled = scaler.transform(df)
-    #df_encoded = label_encoder.transform(df['categorical features'])
 
-    #Merging the datasets
-    #df_cleaned = pd.concat([df_scaled,df_encoded],axis=1)
 
     # Prediction
     raw_prediction = model.predict(df_scaled)
