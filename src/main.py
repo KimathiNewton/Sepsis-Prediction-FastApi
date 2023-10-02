@@ -34,6 +34,16 @@ model = ml_components_dict['model']
 # Create FastAPI instance
 app = FastAPI(title="Sepsis Prediction API",description="API for Predicting Sespsis ")
    
+from fastapi.middleware.cors import CORSMiddleware
+
+# Add this after creating the FastAPI instance
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Adjust this based on your deployment requirements
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 # Create prediction endpoint
 @app.get("/predict")
