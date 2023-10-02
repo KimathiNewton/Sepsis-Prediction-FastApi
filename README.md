@@ -28,4 +28,4 @@ Demo
 uvicorn src.demo_01.api:app --reload 
 Go to your browser at the following address, to explore the api's documentation :
 
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/docs#/.
