@@ -5,10 +5,6 @@ import pickle
 from pydantic import BaseModel
 import pandas as pd
 import os
-from sklearn.metrics import euclidean_distances
-#Model Evaluation
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score, roc_auc_score
-from sklearn.metrics import *
 
 
 # Assuming these imports for scaler and label_encoder
@@ -34,10 +30,15 @@ scaler = ml_components_dict['scaler']
 model = ml_components_dict['model']
 
 
-app = FastAPI()
 
-@app.get("/inference")
+# Create FastAPI instance
+app = FastAPI(title="Sepsis Prediction API",description="API for Predicting Sespsis ")
+   
+
+# Create prediction endpoint
+@app.get("/predict")
 def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,Age:float):
+
     """
 * ID: number to represent patient ID
 
@@ -60,8 +61,7 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
 * Insurance: If a patient holds a valid insurance card
 
 * Sepsis: Positive: if a patient in ICU will develop a sepsis , and Negative: otherwis otherwise
-    """
-    
+"""   
     # Prepare the feature and structure them like in the notebook
     df = pd.DataFrame({
         "PRG":[PRG],
@@ -73,6 +73,7 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
         "BD2":[BD2],
         "Age":[Age]
     })
+
 
     print(f"[Info] The initial and raw df : {df.to_markdown()}")
 
@@ -86,14 +87,12 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
     # Prediction
     raw_prediction = model.predict(df_scaled)
     if raw_prediction == 0:
-        return{f"Negative To Sepsis"}
+        return{f"The patient will Not Develop Sepsis"}
     elif raw_prediction == 1:
-        return {f"Positive to Sepsis"}
+        return {f"The patient Will Develop Sepsis"}
     else:
         return {"Error"}
 
-    
-# Status Endpoint to check if the API is online
-@app.get("/status")
-def status():
-    return {"Message" : "online"}
+
+if __name__ == "__main__":
+    uvicorn.run("main:app",reload=True)
