@@ -44,8 +44,6 @@ from fastapi.middleware.cors import CORSMiddleware
 def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,Age:float):
 
     """
-* ID: number to represent patient ID
-
 * PRG: Plasma glucose
 
 * PL: Blood Work Result-1 (mu U/ml)
@@ -62,8 +60,6 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
 
 * Age: patients age(years)
 
-* Insurance: If a patient holds a valid insurance card
-
 * Sepsis: Positive: if a patient in ICU will develop a sepsis , and Negative: otherwis otherwise
 """   
     # Prepare the feature and structure them like in the notebook
@@ -79,7 +75,7 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
     })
 
 
-    print(f"[Info] The initial and raw df : {df.to_markdown()}")
+    print(f"[Info] The inputed dataframe is : {df.to_markdown()}")
 
     # Feature Preprocessing and Creation
     df_scaled = scaler.transform(df)
@@ -99,4 +95,4 @@ def predict (PRG:float,PL:float,BP:float,SK:float,TS:float,BMI:float,BD2:float,A
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app",reload=True)
+    uvicornf.run("main:app",reload=True)
