@@ -1,32 +1,31 @@
-# Dataset Description - Assignment 1
+Install the required packages to be able to run the evaluation locally.
 
-The provided data is a modified version of a publicly available data source, and is subject to copyright.
+You need to have Python 3 on your system (a Python version lower than 3.10). Then you can clone this repo and being at the repo's root :: repository_name> ... follow the steps below:
+``````
+Windows:
 
-### Donor of database: 
-                          The Johns Hopkins University
-                          Johns Hopkins Road
-                          Laurel, MD 20707
-                          (301) 953-6231
+  python -m venv venv; venv\Scripts\activate; python -m pip install -q --upgrade pip; python -m pip install -qr requirements.txt 
+`````` 
+Linux & MacOs:
+``````
+  python3 -m venv venv; source venv/bin/activate; python -m pip install -q --upgrade pip; python -m pip install -qr requirements.txt  
+``````
+The both long command-lines have a same structure, they pipe multiple commands using the symbol ; but you may manually execute them one after another.
 
-### Licence agreement: 
+* Create the Python's virtual environment that isolates the required libraries of the project to avoid conflicts;
+* Activate the Python's virtual environment so that the Python kernel & libraries will be those of the isolated environment;
+* Upgrade Pip, the installed libraries/packages manager to have the up-to-date version that will work correctly;
+* Install the required libraries/packages listed in the requirements.txt file so that it will be allow to import them into the python's scripts and notebooks without any issue.
+NB: For MacOs users, please install Xcode if you have an issue.
 
-The dataset can only be used for the purpose of this assignment. Sharing or distributing this data or using this data for any other commercial or non-commercial purposes is prohibited.
+Run FastAPI
+Run the demo apps (being at the repository root):
 
+FastAPI:
 
-### Data Fields
+Demo
 
-| Column   Name                | Attribute/Target | Description                                                                                                                                                                                                  |
-|------------------------------|------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| ID                           | N/A              | Unique number to represent patient ID                                                                                                                                                                        |
-| PRG           | Attribute1       |  Plasma glucose|
-| PL               | Attribute 2     |   Blood Work Result-1 (mu U/ml)                                                                                                                                                |
-| PR              | Attribute 3      | Blood Pressure (mm Hg)|
-| SK              | Attribute 4      | Blood Work Result-2 (mm)|
-| TS             | Attribute 5      |     Blood Work Result-3 (mu U/ml)|                                                                                  
-| M11     | Attribute 6    |  Body mass index (weight in kg/(height in m)^2|
-| BD2             | Attribute 7     |   Blood Work Result-4 (mu U/ml)|
-| Age              | Attribute 8      |    patients age  (years)|
-| Insurance | N/A     | If a patient holds a valid insurance card|
-| Sepssis                 | Target           | Positive: if a patient in ICU will develop a sepsis , and Negative: otherwise |
+uvicorn src.demo_01.api:app --reload 
+Go to your browser at the following address, to explore the api's documentation :
 
-### Missing Attribute Values: Yes
+http://127.0.0.1:8000/docs
