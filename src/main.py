@@ -24,6 +24,7 @@ ml_core_fp = os.path.join(DIRPATH,"ML","ML_Model.pkl")
 ml_components_dict = Ml_loading_components(fp=ml_core_fp)
 
 
+
 # Defining the variables for each component
 label_encoder = ml_components_dict['label_encoder']
 scaler = ml_components_dict['scaler']
@@ -33,17 +34,10 @@ model = ml_components_dict['model']
 
 # Create FastAPI instance
 app = FastAPI(title="Sepsis Prediction API",description="API for Predicting Sespsis ")
-   
+
+# 
 from fastapi.middleware.cors import CORSMiddleware
 
-# Add this after creating the FastAPI instance
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Adjust this based on your deployment requirements
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # Create prediction endpoint
 @app.get("/predict")
