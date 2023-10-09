@@ -1,0 +1,10 @@
+ python -m venv venv; # To create a venv environment
+ venv\Scripts\activate; # To activate the environment
+ python -m pip install -q --upgrade pip;# To upgrade the pip 
+ python -m pip install -qr requirements.txt # To install the requirements
+
+ # THe model of the input is useful to structure the input of the data (class)
+ #The variable for a function will be an object of the class defined
+
+ #   View a summary of image vulnerabilities and recommendations 
+ docker scout quickview
