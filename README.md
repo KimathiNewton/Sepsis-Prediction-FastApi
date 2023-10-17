@@ -53,7 +53,8 @@ The following is the expected output:
 
 Go to your browser at the following address, to explore the api's documentation, which appears like below :
 
-![API Documentation](Assets\Images\Terminal.png)
+![API Documentation](Assets/Images/Terminal.png)
+
 
 ![Sentiments](Assets/Images/Interface.png)
 Follwoo
