@@ -48,7 +48,7 @@ To run this project, use the following command at the repository root:
 python src/main.py
 ``````
 The following is the expected output:
-![Terminal Output](Assets/Images/Terminal.png)
+![Terminal Output]{Assets/Images/Terminal.png}
 
 Go to your browser at the following address, to explore the api's documentation, which appears like below :
 
