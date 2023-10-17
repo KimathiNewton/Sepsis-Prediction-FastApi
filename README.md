@@ -71,5 +71,11 @@ Also check out my latest articles here:
 
 <a target="_blank" href="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/2"><img src="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/2" alt="Recent Article 2">
 
+
 ## Contribution
-Feel free to contribute to the project by providing feedback, reporting issues, or submitting pull requests. Together, we can enhance the capabilities of this Sepsis Prediction Fast API.
+Feel free to contribute to the project by providing feedback, reporting issues, or submitting pull requests.
+
+Email: newtonkimathi20@gmail.com
+
+Hugging Face : https://huggingface.co/spaces/NewtonKimathi/Sepsis_Prediction_FastApi
+
