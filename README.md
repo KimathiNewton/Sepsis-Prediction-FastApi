@@ -59,5 +59,17 @@ Follow this linke to explore the api's documentations:
 
 http://127.0.0.1:8000/docs 
 
+
+# Article 
+Here is the [Article Link](https://medium.com/@NewtonKimathi/sepsis-api-25fa63c5b87d)
+
+Also check out my latest articles here:
+
+<a target="_blank" href="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/0"><img src="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/0" alt="Recent Article 0"> 
+
+<a target="_blank" href="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/1"><img src="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/1" alt="Recent Article 1">
+
+<a target="_blank" href="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/2"><img src="https://github-readme-medium-recent-article.vercel.app/medium/@@NewtonKimathi/2" alt="Recent Article 2">
+
 ## Contribution
 Feel free to contribute to the project by providing feedback, reporting issues, or submitting pull requests. Together, we can enhance the capabilities of this Sepsis Prediction Fast API.
