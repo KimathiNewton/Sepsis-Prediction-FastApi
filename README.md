@@ -55,6 +55,7 @@ Go to your browser at the following address, to explore the api's documentation,
 
 ![API Documentation](Assets\Images\Terminal.png)
 
+![Sentiments](Assets/Images/Interface.png)
 Follwoo
 http://127.0.0.1:8000/docs
 
