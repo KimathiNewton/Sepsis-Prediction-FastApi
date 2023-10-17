@@ -49,7 +49,7 @@ python src/main.py
 ``````
 The following is the expected output:
 
-![Terminal Output](Assets/Images/Terminal.png)
+![](Assets/Images/Terminal.png)
 
 Go to your browser at the following address, to explore the api's documentation, which appears like below :
 
