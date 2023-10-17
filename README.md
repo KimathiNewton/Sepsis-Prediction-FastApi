@@ -53,12 +53,11 @@ The following is the expected output:
 
 Go to your browser at the following address, to explore the api's documentation, which appears like below :
 
-![API Documentation](Assets/Images/Terminal.png)
+![](Assets/Images/Interface.png)
 
+Follow this linke to explore the api's documentations:
 
-![Sentiments](Assets/Images/Interface.png)
-Follwoo
-http://127.0.0.1:8000/docs
+http://127.0.0.1:8000/docs 
 
 ## Contribution
 Feel free to contribute to the project by providing feedback, reporting issues, or submitting pull requests. Together, we can enhance the capabilities of this Sepsis Prediction Fast API.
